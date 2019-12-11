@@ -1,0 +1,51 @@
+/* resetting default */
+
+body {
+    margin: 0;
+    font-family: impact;
+}
+
+h1, h2 {
+    margin: 0;
+}
+
+/* containers */
+.main-container {
+    margin-right: auto;
+    margin-left: auto;
+    width: 90vw;
+    height: 900px;
+    text-align: center;
+}
+
+/* gallery */
+.thumbnails {
+    height: 200px;
+    width: 200px;
+    cursor: pointer;
+}
+
+/* meme controller */
+
+.meme-editor {
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas: "cnvs-cont meme-edit-cntrl";
+}
+
+.canvas-container {
+    grid-area: cnvs-cont;
+}
+
+.meme-editor-controller {
+    grid-area: meme-edit-cntrl;
+}
+
+/* view helpers */
+
+.grid {
+    display: grid;
+}
+
+.hidden {
+    display: none;
+}

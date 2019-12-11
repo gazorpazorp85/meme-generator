@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Paolo's Meme Generator</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body onload=init()>
+    <div class="main-container">
+        <header>
+            <h1>this is my webpage! yeah!</h1>
+            <nav></nav>
+        </header>
+        <div class="gallery">
+
+        </div>
+        <div class="meme-editor-container hidden">
+            <div class="meme-editor grid">
+                <div class="canvas-container">
+                    <canvas id="main-canvas" width=500 height=500></canvas>
+                </div>
+                <div class="meme-editor-controller">
+                    <div class="meme-editor-close" onclick="onToggleGallery()">X</div>
+                        <div>Enter meme text:
+                            <input type="text" id="text-top-line" placeholder="Enter text here">
+                        </div>
+                        <div>
+                            Select color:
+                            <input type="color" id="fillcolor" value="#000000" onclick="onChangeFillColor()">
+                        </div>
+                        <div>
+                            Select border color:
+                            <input type="color" id="bordercolor" value="#000000" onclick="onChangeBorderColor()"> 
+                        </div>
+                </div>
+            </div>
+        </div>
+        <footer></footer>
+    </div>
+
+    <script src="js/storageService.js"></script>
+    <script src="js/memeService.js"></script>
+    <script src="js/canvasController.js"></script>
+    <script src="js/memeController.js"></script>
+</body>
+
+</html>
