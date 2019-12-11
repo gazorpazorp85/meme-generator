@@ -19,9 +19,11 @@ h1, h2 {
 }
 
 /* gallery */
+
 .thumbnails {
     height: 200px;
     width: 200px;
+    margin: 5px;
     cursor: pointer;
 }
 
@@ -48,4 +50,12 @@ h1, h2 {
 
 .hidden {
     display: none;
+}
+
+.flex {
+    display: flex;
+}
+
+.column {
+    flex-direction: column;
 }

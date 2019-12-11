@@ -12,7 +12,7 @@ function drawMeme(imgId) {
     gCurrImg = getImageById(imgId);
     gCurrMeme = createMeme(imgId);
     gCtx.strokeStyle = gCurrMeme.txts[0].borderColor;
-    gCtx.fillStyle = gCurrMeme.txts[0].fillColor;
+    gCtx.fillStyle = gCurrMeme.txts[0].color;
     gCtx.font = '50px Impact'
     let renderImg = new Image();
     renderImg.src = gCurrImg.url;

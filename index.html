@@ -10,12 +10,12 @@
 </head>
 
 <body onload=init()>
-    <div class="main-container">
+    <div class="main-container flex column">
         <header>
-            <h1>this is my webpage! yeah!</h1>
+            <h1>Paolo's meme generator! website is under heavy construction!!</h1>
             <nav></nav>
         </header>
-        <div class="gallery">
+        <div class="gallery main-container flex">
 
         </div>
         <div class="meme-editor-container hidden">
@@ -26,15 +26,15 @@
                 <div class="meme-editor-controller">
                     <div class="meme-editor-close" onclick="onToggleGallery()">X</div>
                         <div>Enter meme text:
-                            <input type="text" id="text-top-line" placeholder="Enter text here">
+                            <input type="text" id="text-top-line" placeholder="Enter text here" onkeypress="onChangeText(this.value)">
                         </div>
                         <div>
                             Select color:
-                            <input type="color" id="fillcolor" value="#000000" onclick="onChangeFillColor()">
+                            <input type="color" id="fillcolor" value="#000000" onchange="onChangeFillColor(this.value)">
                         </div>
                         <div>
                             Select border color:
-                            <input type="color" id="bordercolor" value="#000000" onclick="onChangeBorderColor()"> 
+                            <input type="color" id="bordercolor" value="#000000" onchange="onChangeBorderColor(this.value)"> 
                         </div>
                 </div>
             </div>

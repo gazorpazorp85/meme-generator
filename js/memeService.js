@@ -1,6 +1,6 @@
 let gImgs = [];
 let gNextId = 1;
-let gMemes = [];
+let gMemes;
 const ID = 'gNextId';
 const PICTURES = 'gImgs';
 const MEMES = 'gMemes'
@@ -33,14 +33,12 @@ function loadPictures() {
 }
 
 function getImageById(imgId) {
-    return gImgs.find(function (gImg) {
-        return gImg.id === imgId;
-    });
+    return gImgs.find(gImg => gImg.id === imgId);
 }
 
 function createMeme(imgId) {
-    debugger;
-    if (gMemes.length === 0) {
+    gMemes = loadFromStorage(MEMES, []);
+    if (gMemes.length === 0) { 
         let meme = {
             selectedImgId: imgId,
             selectedTxtIdx: 0,
@@ -50,17 +48,28 @@ function createMeme(imgId) {
                 color: '#FFFFFF',
                 borderColor: '#FFFFFF'
             }]
-        }
+        };
+        gMemes.push(meme);
+        saveToStorage(MEMES, gMemes);
         return meme;
     } else {
-        getMemeById(imgId);
+        getMemeById();
+        return gMemes;
     }
 }
 
-function getMemeById(imgId) {
-    return gMemes.find(function (gMeme) {
-        return gMeme.id === imgId;
-    });
+function getMemeById() {
+    gMemes = loadFromStorage(MEMES, []);
+    let imgId = gCurrImg.id;
+    for (let meme in gMemes) {
+        if (imgId === gMemes[meme]) return gMemes;
+    }
+}
+
+function changeText(text) {
+    gCurrMeme.txts[0].line = text;
+    gMemes = gCurrMeme;
+    saveToStorage(MEMES, gMemes);
 }
 
 function changeFillColor(fillColor) {
@@ -69,3 +78,8 @@ function changeFillColor(fillColor) {
     saveToStorage(MEMES, gMemes);
 }
 
+function changeBorderColor(borderColor) {
+    gCurrMeme.txts[0].borderColor = borderColor;
+    gMemes = gCurrMeme;
+    saveToStorage(MEMES, gMemes);
+}

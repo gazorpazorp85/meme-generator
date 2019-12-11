@@ -9,7 +9,7 @@ function init() {
 function renderGallery() {
     let imgs = loadPictures();
     let strHtmls = imgs.map(function (img) {
-        return `<div><img class="thumbnails" src="${img.url}" onclick="onToggleMemeEditor(${img.id})"/></div>`
+        return `<img class="thumbnails" src="${img.url}" onclick="onToggleMemeEditor(${img.id})"/>`
     });
     document.querySelector('.gallery').innerHTML = strHtmls.join('');
 }
@@ -19,6 +19,7 @@ function onToggleMemeEditor(imgId) {
     elMemeEditor.classList.toggle('hidden');
     let elGallery = document.querySelector('.gallery');
     elGallery.classList.toggle('hidden');
+    elGallery.classList.toggle('flex');
     renderMemeEditor(imgId);
 }
 
@@ -27,6 +28,7 @@ function onToggleGallery() {
     elMemeEditor.classList.toggle('hidden');
     let elGallery = document.querySelector('.gallery');
     elGallery.classList.toggle('hidden');
+    elGallery.classList.toggle('flex');
     renderGallery();
 }
 
@@ -38,22 +40,22 @@ function preventDefault(event) {
     event.preventDefault();
 }
 
-function onChangeText() {
-    let elText = document.getElementById('text-top-line');
-    let text = elText.value;
+function onChangeText(text) {
+    changeText(text);
+    let imgId = gCurrImg.id;
+    drawMeme(imgId);
 }
 
-function onChangeFillColor() {
-    let elfillColor = document.getElementById('fillcolor');
-    let fillColor = elfillColor.value;
+function onChangeFillColor(fillColor) {
     changeFillColor(fillColor);
     let imgId = gCurrImg.id;
     drawMeme(imgId);
 }
 
-function onChangeBorderColor() {
-    let elBorderColor = document.getElementById('bordercolor');
-    let borderColor = elBorderColor.value;
+function onChangeBorderColor(borderColor) {
+    changeBorderColor(borderColor);
+    let imgId = gCurrImg.id;
+    drawMeme(imgId);
 }
 
 
