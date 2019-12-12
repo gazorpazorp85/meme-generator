@@ -70,7 +70,6 @@ function getImageById(imgId) {
 
 function changeText(text) {
     gMemes.txts[gCurrLine].line = text;
-    console.log(gMemes.selectedTxtIdx);
     return gMemes;
 }
 

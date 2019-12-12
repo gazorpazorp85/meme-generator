@@ -14,21 +14,22 @@ function renderGallery() {
 }
 
 function onToggleMemeEditor(imgId) {
-    let elMemeEditor = document.querySelector('.meme-editor-container');
-    elMemeEditor.classList.toggle('hidden');
-    let elGallery = document.querySelector('.gallery');
-    elGallery.classList.toggle('hidden');
-    elGallery.classList.toggle('flex');
+    toggleRenderPages();
     createCanvas(imgId);
 }
 
 function onToggleGallery() {
+    toggleRenderPages();
+    renderGallery();
+}
+
+function toggleRenderPages() {
     let elMemeEditor = document.querySelector('.meme-editor-container');
     elMemeEditor.classList.toggle('hidden');
+    elMemeEditor.classList.toggle('flex');
     let elGallery = document.querySelector('.gallery');
     elGallery.classList.toggle('hidden');
     elGallery.classList.toggle('flex');
-    renderGallery();
 }
 
 function onChangeText(element) {

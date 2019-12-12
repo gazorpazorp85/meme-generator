@@ -5,11 +5,19 @@
 
 /* resetting default */
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     font-family: nanum, sans-serif;
     background-image: url(../img/backgroundimage.jpg);
     background-size: cover;
+}
+
+li {
+    list-style: none;
 }
 
 h1, h2 {
@@ -60,10 +68,20 @@ h1, h2 {
 }
 
 .meme-editor-controller {
-    margin-left: 10px;
+    margin: 10px;
+    padding: 10px;
     border-radius: 25px;
     background-color: rgb(46, 40, 40);
     color: ivory;
+}
+
+.meme-editor-close {
+    align-self: flex-end;
+}
+
+.bottom-text, .switch-lines, 
+    .font-size, .move-line, .line-position {
+    margin-bottom: 15px;
 }
 
 .canvas-container {
@@ -74,8 +92,21 @@ h1, h2 {
     grid-area: meme-edit-cntrl;
 }
 
-.meme-editor-close {
-    cursor: pointer;
+.meme-editor-controller img{
+    height: 30px;
+    width: 30px;
+}
+
+.border-color-input, .background-color-input{
+    height: 30px;
+    width: 100px;
+    margin-bottom: 15px;
+}
+
+
+input[type="color"] {
+    background-color: transparent;
+    border: none;
 }
 
 /* footer */
@@ -111,10 +142,73 @@ h1, h2 {
 
 .column {
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }
 
 .center {
     justify-content: center;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+}
+
+@media (max-width: 576px) {
+
+html {
+    font-size: 15px;
+}
+
+.title {
+    font-size: 0.9em;
+    height: 100px;
+    line-height:100px;
+}
+/* gallery */
+.thumbnails {
+    height: 100px;
+    width: 100px;
+}
+
+/* canvas */
+
+#main-canvas {
+    width: 300px;
+    height: 300px;
+}
+
+/* meme-controller */
+
+.meme-editor-controller img{
+    height: 20px;
+    width: 20px;
+}
+
+.meme-editor {
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    "cnvs-cont"
+    "meme-edit-cntrl"
+    "meme-edit-cntrl"
+}
+
+.meme-editor-close {
+    align-self: center;
+}
+
+/* footer */
+
+.footer {
+    height: 80px;
+    line-height: 80px;
+    text-shadow: rgb(228, 91, 91) 4px 4px;
+}
 }

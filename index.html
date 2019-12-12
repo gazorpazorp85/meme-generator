@@ -18,44 +18,72 @@
         <div class="gallery main-container flex wrap center">
 
         </div>
-        <div class="meme-editor-container hidden">
+        <div class="meme-editor-container center hidden">
             <div class="meme-editor grid">
                 <div class="canvas-container">
                     <canvas id="main-canvas" width=500 height=500></canvas>
                 </div>
-                <div class="meme-editor-controller flex column">
-                    <div class="meme-editor-close" onclick="onToggleGallery()">X</div>
-                    <div>Enter Top text:
-                        <input type="text" id="top-text" placeholder="Enter text here" onclick="onChangeText(this)" onkeyup="onChangeText(this)">
-                    </div>
-                    <div>Enter Bottom text:
-                        <input type="text" id="bottom-text" placeholder="Enter text here" onclick="onChangeText(this)" onkeyup="onChangeText(this)">
-                    </div>
-                    <div>Switch Lines:
-                        <button onclick="onSwitchLines()">Switch Lines</button>
+                <div class="meme-editor-controller flex column align-center">
+                    <div class="meme-editor-close pointer" onclick="onToggleGallery()">
+                        <img src="img/Icons/x-mark-48.png">
                     </div>
                     <div>
-                        Select color:
+                        <img src="img/Icons/arrow-138-48.png">
+                        <img src="img/Icons/edit-6-48.png">
+                        <input type="text" id="top-text" placeholder="Enter text here" onclick="onChangeText(this)"
+                            onkeyup="onChangeText(this)">
+                    </div>
+                    <div class="bottom-text">
+                        <img src="img/Icons/arrow-197-48.png">
+                        <img src="img/Icons/edit-6-48.png">
+                        <input type="text" id="bottom-text" placeholder="Enter text here" onclick="onChangeText(this)"
+                            onkeyup="onChangeText(this)">
+                    </div>
+                    <div class="pointer">
+                        <div class="switch-lines" onclick="onSwitchLines()">
+                            <img src="img/Icons/arrow-138-48.png">
+                            <img src="img/Icons/arrow-197-48.png">
+                        </div>
+                    </div>
+                    <div class=background-color-input>
+                        <img src="img/Icons/text-bg-color-48.png">
                         <input type="color" value="#ffffff" onchange="onChangeFillColor(this.value)">
                     </div>
-                    <div>
-                        Select border color:
+                    <div class="border-color-input">
+                        <img src="img/Icons/paint-brush-48.png">
                         <input type="color" value="#000000" onchange="onChangeBorderColor(this.value)">
+
                     </div>
-                    <div class="font-size">Font size:
-                        <button value="+" onclick="onChangeFontSize(this.value)">+</button>
-                        <button value="-" onclick="onChangeFontSize(this.value)">-</button>
+                    <div class="font-size">
+                        <button value="+" onclick="onChangeFontSize(this.value)">
+                            <img class="pointer" src="img/Icons/increase-font-48.png">
+                        </button>
+                        <button value="-" onclick="onChangeFontSize(this.value)">
+                            <img class="pointer" src="img/Icons/decrease-font-48.png">
+                        </button>
                     </div>
-                    <div class="move-line">Move line:
-                        <button value="-" onclick="onMoveLine(this.value)">Up</button>
-                        <button value="+" onclick="onMoveLine(this.value)">Down</button>
+                    <div class="move-line">
+                        <button value="-" onclick="onMoveLine(this.value)">
+                            <img class="pointer" src="img/Icons/arrow-138-48.png">
+                        </button>
+                        <button value="+" onclick="onMoveLine(this.value)">
+                            <img class="pointer" src="img/Icons/arrow-197-48.png">
+                        </button>
                     </div>
-                    <div class="line-position">Line position:
-                        <button value="-" onclick="onPositionLine(this.value)">Top</button>
-                        <button value="+" onclick="onPositionLine(this.value)">Bottom</button>
+                    <div class="line-position">
+                        <button value="-" onclick="onPositionLine(this.value)">
+                            <img class="pointer" src="img/Icons/align-top-2-48.png">
+                        </button>
+                        <button value="+" onclick="onPositionLine(this.value)">
+                            <img class="pointer" src="img/Icons/align-bottom-2-48.png">
+                        </button>
                     </div>
                     <div class="download">
-                        <div class="download-button"><a href="#" onclick="downloadCanvas(this)">Download</a></div>
+                        <div class="download-button">
+                            <a href="#" onclick="downloadCanvas(this)">
+                                <img src="img/Icons/download-48.png">
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
