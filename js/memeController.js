@@ -3,6 +3,7 @@
 function init() {
     loadPictures();
     renderGallery();
+    createCanvas();
 }
 
 function renderGallery() {
@@ -14,58 +15,47 @@ function renderGallery() {
 }
 
 function onToggleMemeEditor(imgId) {
-    toggleRenderPages();
-    createCanvas(imgId);
-}
-
-function onToggleGallery() {
-    toggleRenderPages();
-    renderGallery();
-}
-
-function toggleRenderPages() {
     let elMemeEditor = document.querySelector('.meme-editor-container');
     elMemeEditor.classList.toggle('hidden');
-    elMemeEditor.classList.toggle('flex');
     let elGallery = document.querySelector('.gallery');
     elGallery.classList.toggle('hidden');
     elGallery.classList.toggle('flex');
+    renderMemeEditor(imgId);
 }
 
-function onChangeText(element) {
-    let elLine = element.id;
-    let text = element.value;
-    checkWhichLine(elLine);
+function onToggleGallery() {
+    let elMemeEditor = document.querySelector('.meme-editor-container');
+    elMemeEditor.classList.toggle('hidden');
+    let elGallery = document.querySelector('.gallery');
+    elGallery.classList.toggle('hidden');
+    elGallery.classList.toggle('flex');
+    renderGallery();
+}
+
+function renderMemeEditor(imgId) {
+    drawMeme(imgId);
+}
+
+function preventDefault(event) {
+    event.preventDefault();
+}
+
+function onChangeText(text) {
     changeText(text);
-    drawMeme();
+    let imgId = gCurrImg.id;
+    drawMeme(imgId);
 }
 
 function onChangeFillColor(fillColor) {
     changeFillColor(fillColor);
-    drawMeme();
+    let imgId = gCurrImg.id;
+    drawMeme(imgId);
 }
 
 function onChangeBorderColor(borderColor) {
     changeBorderColor(borderColor);
-    drawMeme();
+    let imgId = gCurrImg.id;
+    drawMeme(imgId);
 }
 
-function onChangeFontSize(diff) {
-    changeFontSize(diff);
-    drawMeme();
-}
 
-function onMoveLine(diff) {
-    moveLine(diff);
-    drawMeme();
-}
-
-function onPositionLine(diff) {
-    positionLine(diff);
-    drawMeme();
-}
-
-function onSwitchLines() {
-    switchLines();
-    drawMeme();
-}
