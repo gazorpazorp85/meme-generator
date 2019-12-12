@@ -6,14 +6,14 @@ let gMemes = {
         line: ' ',
         color: '#FFFFFF',
         borderColor: '#000000',
-        fontSize: 24,
+        fontSize: 1.5,
         x: 10,
         y: 60
     }, {
         line: ' ',
         color: '#FFFFFF',
         borderColor: '#000000',
-        fontSize: 24,
+        fontSize: 1.5,
         x: 10,
         y: 460
     }]

@@ -41,7 +41,7 @@ function drawText() {
         let textY = gMemes.txts[i].y;
         gCtx.strokeStyle = gMemes.txts[i].borderColor;
         gCtx.fillStyle = gMemes.txts[i].color;
-        gCtx.font = gMemes.txts[i].fontSize + 'px Impact';
+        gCtx.font = gMemes.txts[i].fontSize + 'rem Impact';
         gCtx.fillText(text, textX, textY);
         gCtx.strokeText(text, textX, textY);
     }
