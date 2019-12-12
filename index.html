@@ -10,36 +10,85 @@
 </head>
 
 <body onload=init()>
-    <div class="main-container flex column">
-        <header>
-            <h1>Paolo's meme generator! website is under heavy construction!!</h1>
+    <div class="flex column">
+        <header class="title">
+            <h1>Paolo's Meme Generator</h1>
             <nav></nav>
         </header>
-        <div class="gallery main-container flex">
+        <div class="gallery main-container flex wrap center">
 
         </div>
-        <div class="meme-editor-container hidden">
+        <div class="meme-editor-container center hidden">
             <div class="meme-editor grid">
                 <div class="canvas-container">
                     <canvas id="main-canvas" width=500 height=500></canvas>
                 </div>
-                <div class="meme-editor-controller">
-                    <div class="meme-editor-close" onclick="onToggleGallery()">X</div>
-                        <div>Enter meme text:
-                            <input type="text" id="text-top-line" placeholder="Enter text here" onkeyup="onChangeText(this.value)">
+                <div class="meme-editor-controller flex column align-center">
+                    <div class="meme-editor-close pointer" onclick="onToggleGallery()">
+                        <img src="img/Icons/x-mark-48.png">
+                    </div>
+                    <div>
+                        <img src="img/Icons/arrow-138-48.png">
+                        <img src="img/Icons/edit-6-48.png">
+                        <input type="text" id="top-text" placeholder="Enter text here" onclick="onChangeText(this)"
+                            onkeyup="onChangeText(this)">
+                    </div>
+                    <div class="bottom-text">
+                        <img src="img/Icons/arrow-197-48.png">
+                        <img src="img/Icons/edit-6-48.png">
+                        <input type="text" id="bottom-text" placeholder="Enter text here" onclick="onChangeText(this)"
+                            onkeyup="onChangeText(this)">
+                    </div>
+                    <div class="pointer">
+                        <div class="switch-lines" onclick="onSwitchLines()">
+                            <img src="img/Icons/arrow-138-48.png">
+                            <img src="img/Icons/arrow-197-48.png">
                         </div>
-                        <div>
-                            Select color:
-                            <input type="color" id="fillcolor" value="#000000" onchange="onChangeFillColor(this.value)">
+                    </div>
+                    <div class=background-color-input>
+                        <img src="img/Icons/text-bg-color-48.png">
+                        <input type="color" value="#ffffff" onchange="onChangeFillColor(this.value)">
+                    </div>
+                    <div class="border-color-input">
+                        <img src="img/Icons/paint-brush-48.png">
+                        <input type="color" value="#000000" onchange="onChangeBorderColor(this.value)">
+
+                    </div>
+                    <div class="font-size">
+                        <button value="+" onclick="onChangeFontSize(this.value)">
+                            <img class="pointer" src="img/Icons/increase-font-48.png">
+                        </button>
+                        <button value="-" onclick="onChangeFontSize(this.value)">
+                            <img class="pointer" src="img/Icons/decrease-font-48.png">
+                        </button>
+                    </div>
+                    <div class="move-line">
+                        <button value="-" onclick="onMoveLine(this.value)">
+                            <img class="pointer" src="img/Icons/arrow-138-48.png">
+                        </button>
+                        <button value="+" onclick="onMoveLine(this.value)">
+                            <img class="pointer" src="img/Icons/arrow-197-48.png">
+                        </button>
+                    </div>
+                    <div class="line-position">
+                        <button value="-" onclick="onPositionLine(this.value)">
+                            <img class="pointer" src="img/Icons/align-top-2-48.png">
+                        </button>
+                        <button value="+" onclick="onPositionLine(this.value)">
+                            <img class="pointer" src="img/Icons/align-bottom-2-48.png">
+                        </button>
+                    </div>
+                    <div class="download">
+                        <div class="download-button">
+                            <a href="#" onclick="downloadCanvas(this)">
+                                <img src="img/Icons/download-48.png">
+                            </a>
                         </div>
-                        <div>
-                            Select border color:
-                            <input type="color" id="bordercolor" value="#000000" onchange="onChangeBorderColor(this.value)"> 
-                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <footer></footer>
+        <footer class="footer flex center">©Gazorpazorp85 for Vandaley Industries</footer>
     </div>
 
     <script src="js/storageService.js"></script>
