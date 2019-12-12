@@ -3,7 +3,6 @@
 function init() {
     loadPictures();
     renderGallery();
-    createCanvas();
 }
 
 function renderGallery() {
@@ -20,7 +19,7 @@ function onToggleMemeEditor(imgId) {
     let elGallery = document.querySelector('.gallery');
     elGallery.classList.toggle('hidden');
     elGallery.classList.toggle('flex');
-    renderMemeEditor(imgId);
+    createCanvas(imgId);
 }
 
 function onToggleGallery() {
@@ -32,30 +31,40 @@ function onToggleGallery() {
     renderGallery();
 }
 
-function renderMemeEditor(imgId) {
-    drawMeme(imgId);
-}
-
-function preventDefault(event) {
-    event.preventDefault();
-}
-
-function onChangeText(text) {
+function onChangeText(element) {
+    let elLine = element.id;
+    let text = element.value;
+    checkWhichLine(elLine);
     changeText(text);
-    let imgId = gCurrImg.id;
-    drawMeme(imgId);
+    drawMeme();
 }
 
 function onChangeFillColor(fillColor) {
     changeFillColor(fillColor);
-    let imgId = gCurrImg.id;
-    drawMeme(imgId);
+    drawMeme();
 }
 
 function onChangeBorderColor(borderColor) {
     changeBorderColor(borderColor);
-    let imgId = gCurrImg.id;
-    drawMeme(imgId);
+    drawMeme();
 }
 
+function onChangeFontSize(diff) {
+    changeFontSize(diff);
+    drawMeme();
+}
 
+function onMoveLine(diff) {
+    moveLine(diff);
+    drawMeme();
+}
+
+function onPositionLine(diff) {
+    positionLine(diff);
+    drawMeme();
+}
+
+function onSwitchLines() {
+    switchLines();
+    drawMeme();
+}
