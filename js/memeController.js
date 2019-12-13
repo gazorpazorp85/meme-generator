@@ -55,6 +55,11 @@ function onChangeFontSize(diff) {
     drawMeme();
 }
 
+function onChangeTextAlign(align) {
+    changeTextAlign(align);
+    drawMeme();
+}
+
 function onMoveLine(diff) {
     moveLine(diff);
     drawMeme();

@@ -4,6 +4,7 @@ let gMemes = {
     selectedTxtIdx: 0,
     txts: [{
         line: ' ',
+        align: 'left',
         color: '#FFFFFF',
         borderColor: '#000000',
         fontSize: 3,
@@ -11,6 +12,7 @@ let gMemes = {
         y: 60
     }, {
         line: ' ',
+        align: 'left',
         color: '#FFFFFF',
         borderColor: '#000000',
         fontSize: 3,
@@ -97,5 +99,24 @@ function changeBorderColor(borderColor) {
 function changeFontSize(diff) {
     let currLine = gMemes.txts[gCurrLine];
     (diff === '+') ? currLine.fontSize += 0.125 : currLine.fontSize -= 0.125;
+    return gMemes;
+}
+
+function changeTextAlign(align) {
+    let currLine = gMemes.txts[gCurrLine];
+    switch (align) {
+        case (align = 'right'):
+            currLine.x = gCanvas.width - 10;
+            currLine.align = 'right';
+            break;
+        case (align = 'center'):
+            currLine.x = gCanvas.width / 2;
+            currLine.align = 'center';
+            break;
+        case (align = 'left'):
+            currLine.x = 10;
+            currLine.align = 'left';
+            break;
+    }
     return gMemes;
 }

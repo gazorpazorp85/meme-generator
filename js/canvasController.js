@@ -1,15 +1,15 @@
 let gCanvas;
 let gCtx;
 let gCurrImg;
-let gCanvasX = 10;
-let gTopTextY = 60;
-let gBottomTextY = 460;
-
 
 function createCanvas(imgId) {
     gCanvas = document.querySelector('#main-canvas');
     gCtx = gCanvas.getContext('2d');
     gCurrImg = getImageById(imgId);
+    drawImg();
+}
+
+function drawMeme() {
     drawImg();
 }
 
@@ -29,19 +29,17 @@ function drawImg() {
     }
 }
 
-function drawMeme() {
-    drawImg();
-}
-
 function drawText() {
     gCtx.save();
     for (let i = 0; i < gMemes.txts.length; i++) {
-        let text = gMemes.txts[i].line;
-        let textX = gMemes.txts[i].x;
-        let textY = gMemes.txts[i].y;
-        gCtx.strokeStyle = gMemes.txts[i].borderColor;
-        gCtx.fillStyle = gMemes.txts[i].color;
-        gCtx.font = gMemes.txts[i].fontSize + 'rem Impact';
+        let currLine = gMemes.txts[i];
+        let text = currLine.line;
+        gCtx.strokeStyle = currLine.borderColor;
+        gCtx.fillStyle = currLine.color;
+        gCtx.textAlign = currLine.align;
+        let textX = currLine.x;
+        let textY = currLine.y;
+        gCtx.font = currLine.fontSize + 'rem Impact';
         gCtx.fillText(text, textX, textY);
         gCtx.strokeText(text, textX, textY);
     }
