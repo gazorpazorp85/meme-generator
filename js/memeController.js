@@ -32,6 +32,34 @@ function toggleRenderPages() {
     elGallery.classList.toggle('flex');
 }
 
+function renderMyMemes() {
+    let memes = loadSavedMemes();
+    let strHtmls = memes.map(function (meme) {
+        return `<img class="thumbnails" src="data:image/png;base64,${meme}"/>`
+    });
+    document.querySelector('.my-memes').innerHTML = strHtmls.join('');
+}
+
+function onToggleMyMemes() {
+    toggleRenderMyMemesPage();
+    renderMyMemes();
+}
+
+function toggleRenderMyMemesPage() {
+    let elMemeEditor = document.querySelector('.meme-editor-container');
+    let elGallery = document.querySelector('.gallery');
+    if (elMemeEditor.classList.contains("hidden")) {
+        elGallery.classList.toggle('hidden');
+        elGallery.classList.toggle('flex');
+    } else {
+        elMemeEditor.classList.toggle('hidden');
+        elMemeEditor.classList.toggle('flex');
+    }
+    let elMyMemes = document.querySelector('.my-memes');
+    elMyMemes.classList.toggle('hidden');
+    elMyMemes.classList.toggle('flex');
+}
+
 function onChangeText(element) {
     let elLine = element.id;
     let text = element.value;
@@ -71,6 +99,6 @@ function onPositionLine(diff) {
 }
 
 function onSwitchLines() {
-    switchLines();
+    switchLine();
     drawMeme();
 }

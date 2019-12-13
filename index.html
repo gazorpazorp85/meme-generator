@@ -10,13 +10,25 @@
 </head>
 
 <body onload=init()>
-    <div class="flex column">
+    <div class="page-container flex column">
         <header class="title">
             <h1>Paolo's Meme Generator</h1>
-            <nav></nav>
+            <nav>
+                <ul class="main-menu flex center clean-list">
+                    <li class="search-bar">
+                        <div class="search">
+                            <input type="text" id="search" placeholder="search">
+                        </div>
+                    </li>
+                    <li class="saved-memes">
+                        <div class="pointer" onclick="onToggleMyMemes()">My Memes</div>
+                    </li>
+                </ul>
+            </nav>
         </header>
         <div class="gallery main-container flex wrap center">
-
+        </div>
+        <div class="my-memes main-container wrap center hidden">
         </div>
         <div class="meme-editor-container center hidden">
             <div class="meme-editor grid">
@@ -28,80 +40,103 @@
                         <img src="img/Icons/x-mark-48.png">
                     </div>
                     <div>
-                        <img src="img/Icons/arrow-138-48.png">
-                        <img src="img/Icons/edit-6-48.png">
+                        <img src="img/Icons/arrow-138-48.png" title="change top line text">
+                        <img src="img/Icons/edit-6-48.png" title="change top line text">
                         <input type="text" id="top-text" placeholder="Enter text here" onclick="onChangeText(this)"
                             onkeyup="onChangeText(this)">
                     </div>
                     <div class="bottom-text">
-                        <img src="img/Icons/arrow-197-48.png">
-                        <img src="img/Icons/edit-6-48.png">
+                        <img src="img/Icons/arrow-197-48.png" title="change bottom line text">
+                        <img src="img/Icons/edit-6-48.png" title="change bottom line text">
                         <input type="text" id="bottom-text" placeholder="Enter text here" onclick="onChangeText(this)"
                             onkeyup="onChangeText(this)">
                     </div>
                     <div class="pointer">
-                        <div class="switch-lines" onclick="onSwitchLines()">
+                        <div class="switch-lines" onclick="onSwitchLines()" title="switch lines position">
                             <img src="img/Icons/arrow-138-48.png">
                             <img src="img/Icons/arrow-197-48.png">
                         </div>
                     </div>
                     <div class=background-color-input>
                         <img src="img/Icons/text-bg-color-48.png">
-                        <input type="color" value="#ffffff" onchange="onChangeFillColor(this.value)">
+                        <input type="color" value="#ffffff" onchange="onChangeFillColor(this.value)" title="fill color">
                     </div>
                     <div class="border-color-input">
                         <img src="img/Icons/paint-brush-48.png">
-                        <input type="color" value="#000000" onchange="onChangeBorderColor(this.value)">
+                        <input type="color" value="#000000" onchange="onChangeBorderColor(this.value)"
+                            title="border color">
 
                     </div>
                     <div class="font-size">
-                        <button value="+" onclick="onChangeFontSize(this.value)">
+                        <button value="+" onclick="onChangeFontSize(this.value)" title="increase font size">
                             <img class="pointer" src="img/Icons/increase-font-48.png">
                         </button>
-                        <button value="-" onclick="onChangeFontSize(this.value)">
+                        <button value="-" onclick="onChangeFontSize(this.value)" title="decrease font size">
                             <img class="pointer" src="img/Icons/decrease-font-48.png">
                         </button>
                     </div>
                     <div class="text-align">
-                        <button value="left" onclick="onChangeTextAlign(this.value)">
+                        <button value="left" onclick="onChangeTextAlign(this.value)" title="text align left">
                             <img class="pointer" src="img/Icons/justify-left-48.png">
                         </button>
-                        <button value="center" onclick="onChangeTextAlign(this.value)">
+                        <button value="center" onclick="onChangeTextAlign(this.value)" title="text align center">
                             <img class="pointer" src="img/Icons/justify-center-48.png">
                         </button>
-                        <button value="right" onclick="onChangeTextAlign(this.value)">
+                        <button value="right" onclick="onChangeTextAlign(this.value)" title="text align right">
                             <img class="pointer" src="img/Icons/justify-right-48.png">
                         </button>
                     </div>
                     <div class="move-line">
-                        <button value="-" onclick="onMoveLine(this.value)">
+                        <button value="-" onclick="onMoveLine(this.value)" title="move line up">
                             <img class="pointer" src="img/Icons/arrow-138-48.png">
                         </button>
-                        <button value="+" onclick="onMoveLine(this.value)">
+                        <button value="+" onclick="onMoveLine(this.value)" title="move line down">
                             <img class="pointer" src="img/Icons/arrow-197-48.png">
                         </button>
                     </div>
                     <div class="line-position">
-                        <button value="-" onclick="onPositionLine(this.value)">
+                        <button value="-" onclick="onPositionLine(this.value)" title="move to top">
                             <img class="pointer" src="img/Icons/align-top-2-48.png">
                         </button>
-                        <button value="+" onclick="onPositionLine(this.value)">
+                        <button value="+" onclick="onPositionLine(this.value)" title="move to bottom">
                             <img class="pointer" src="img/Icons/align-bottom-2-48.png">
                         </button>
                     </div>
-                    <div class="download">
+                    <div class="data-panel flex">
                         <div class="download-button">
                             <a href="#" onclick="downloadCanvas(this)">
-                                <img src="img/Icons/download-48.png">
+                                <img src="img/Icons/download-48.png" title="download">
                             </a>
+                        </div>
+                        <div class="save pointer" onclick="onSaveMeme()">
+                            <img src="img/Icons/save-48.png" title="save">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <footer class="footer flex center">©Gazorpazorp85 for Vandaley Industries</footer>
+        <footer class="footer flex column align-center">
+                <small>©Gazorpazorp85 for Vandaley Industries</small>
+                <div class="social-links flex center">
+                    <div class="social-logo">
+                        <a href="https://www.facebook.com/karma.tova" class="facebook" title="facebook" target="blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </div>
+                    <div class="social-logo">
+                        <a href="https://www.linkedin.com/in/paolo-groppi-6ba84117b" class="linkedin" title="linkedin" target="blank">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                    <div class="social-logo">
+                        <a href="http://www.paologroppi.com" class="me" target="blank">
+                            <img src="img/Icons/about-me-48.png" width=40 height=40 title="www.paologroppi.com">
+                        </a>
+                    </div>
+                </div>
+        </footer>
     </div>
-
+    <script src="https://kit.fontawesome.com/aa5b8f9a54.js" crossorigin="anonymous"></script>
     <script src="js/storageService.js"></script>
     <script src="js/memeService.js"></script>
     <script src="js/canvasController.js"></script>

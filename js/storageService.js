@@ -7,8 +7,3 @@ function loadFromStorage(key , defaultValue) {
     var str = localStorage.getItem(key);
     return str?  JSON.parse(str) : defaultValue
 }
-
-function loadMemeFromStorage(key , defaultValue) {
-    var str = localStorage.getItem(key);
-    return str?  JSON.parse(str) : defaultValue
-}

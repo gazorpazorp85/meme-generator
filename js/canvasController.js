@@ -1,3 +1,5 @@
+'use strict'
+
 let gCanvas;
 let gCtx;
 let gCurrImg;
@@ -47,25 +49,14 @@ function drawText() {
 }
 
 function moveLine(diff) {
-    (diff === '+') ? gMemes.txts[gCurrLine].y += 5 : gMemes.txts[gCurrLine].y -= 5;
+    let idx = gMemes.selectedTxtIdx;
+    (diff === '+') ? gMemes.txts[idx].y += 5 : gMemes.txts[idx].y -= 5;
     return gMemes;
 }
 
 function positionLine(diff) {
-    (diff === '+') ? gMemes.txts[gCurrLine].y = 460 : gMemes.txts[gCurrLine].y = 60;
-    return gMemes;
-}
-
-function switchLines() {
-    let tempX = gMemes.txts[0].x;
-    let tempY = gMemes.txts[0].y;
-    let tempAlign = gMemes.txts[0].align;
-    gMemes.txts[0].x = gMemes.txts[1].x;
-    gMemes.txts[0].y = gMemes.txts[1].y;
-    gMemes.txts[0].align = gMemes.txts[1].align;
-    gMemes.txts[1].x = tempX;
-    gMemes.txts[1].y = tempY;
-    gMemes.txts[1].align = tempAlign;
+    let idx = gMemes.selectedTxtIdx;
+    (diff === '+') ? gMemes.txts[idx].y = 460 : gMemes.txts[idx].y = 60;
     return gMemes;
 }
 

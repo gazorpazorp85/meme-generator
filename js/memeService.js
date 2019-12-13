@@ -1,3 +1,5 @@
+'use strict'
+
 let gImgs = [];
 let gNextId = 1;
 let gMemes = {
@@ -20,9 +22,10 @@ let gMemes = {
         y: 460
     }]
 };
-gCurrLine = 0;
+let gSavedMemes = [];
 const ID = 'gNextId';
 const PICTURES = 'gImgs';
+const MEMES = 'memes'
 
 function createImg(url, keywords) {
     let img = {
@@ -71,39 +74,41 @@ function getImageById(imgId) {
 }
 
 function changeText(text) {
-    gMemes.txts[gCurrLine].line = text;
+    gMemes.txts[gMemes.selectedTxtIdx].line = text;
     return gMemes;
 }
 
 function checkWhichLine(elLine) {
     if (elLine === "top-text") {
-        gCurrLine = 0;
         gMemes.selectedTxtIdx = 0;
     } else {
-        gCurrLine = 1;
         gMemes.selectedTxtIdx = 1;
     }
-    return gCurrLine;
+    return gMemes;
 }
 
 function changeFillColor(fillColor) {
-    gMemes.txts[gCurrLine].color = fillColor;
+    let idx = gMemes.selectedTxtIdx;
+    gMemes.txts[idx].color = fillColor;
     return gMemes;
 }
 
 function changeBorderColor(borderColor) {
-    gMemes.txts[gCurrLine].borderColor = borderColor;
+    let idx = gMemes.selectedTxtIdx;
+    gMemes.txts[idx].borderColor = borderColor;
     return gMemes;
 }
 
 function changeFontSize(diff) {
-    let currLine = gMemes.txts[gCurrLine];
+    let idx = gMemes.selectedTxtIdx;
+    let currLine = gMemes.txts[idx];
     (diff === '+') ? currLine.fontSize += 0.125 : currLine.fontSize -= 0.125;
     return gMemes;
 }
 
 function changeTextAlign(align) {
-    let currLine = gMemes.txts[gCurrLine];
+    let idx = gMemes.selectedTxtIdx;
+    let currLine = gMemes.txts[idx];
     switch (align) {
         case (align = 'right'):
             currLine.x = gCanvas.width - 10;
@@ -119,4 +124,25 @@ function changeTextAlign(align) {
             break;
     }
     return gMemes;
+}
+
+function switchLine() {
+    (gMemes.selectedTxtIdx === 0) ? gMemes.selectedTxtIdx = 1 : gMemes.selectedTxtIdx = 0; 
+    return gMemes;
+}
+
+function onSaveMeme() {
+    let meme = createMemeData();
+    gSavedMemes.push(meme);
+    saveToStorage(MEMES, gSavedMemes);
+}
+
+function createMemeData() {
+    let meme = gCanvas.toDataURL();
+    return meme.replace(/^data:image\/(png|jpeg);base64,/, '');
+}
+
+function loadSavedMemes() {
+    let gSavedMemes = loadFromStorage(MEMES, []);
+    return gSavedMemes;
 }
