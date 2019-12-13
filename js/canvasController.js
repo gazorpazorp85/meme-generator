@@ -59,10 +59,13 @@ function positionLine(diff) {
 function switchLines() {
     let tempX = gMemes.txts[0].x;
     let tempY = gMemes.txts[0].y;
+    let tempAlign = gMemes.txts[0].align;
     gMemes.txts[0].x = gMemes.txts[1].x;
     gMemes.txts[0].y = gMemes.txts[1].y;
+    gMemes.txts[0].align = gMemes.txts[1].align;
     gMemes.txts[1].x = tempX;
     gMemes.txts[1].y = tempY;
+    gMemes.txts[1].align = tempAlign;
     return gMemes;
 }
 
