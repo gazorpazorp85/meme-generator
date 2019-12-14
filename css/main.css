@@ -353,7 +353,6 @@ button {
 
     .no-saved-memes {
         margin-top: 10px;
-        /* margin-bottom: 300px; */
     }
     
     .my-memes-page {
@@ -405,7 +404,6 @@ button {
 
     .footer {
         margin-top: 10px;
-        /* position: absolute; */
         height: 7rem;
     }
 }

@@ -93,7 +93,8 @@ function addLine() {
             fontSize: 3,
             x: 10,
             y: 250
-    });}
+        });
+    }
     gMemes.selectedTxtIdx = gLineCounter;
     return gMemes;
 }
