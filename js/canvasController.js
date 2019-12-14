@@ -42,10 +42,32 @@ function drawText() {
         let textX = currLine.x;
         let textY = currLine.y;
         gCtx.font = currLine.fontSize + 'rem Impact';
-        gCtx.fillText(text, textX, textY);
-        gCtx.strokeText(text, textX, textY);
+        let lineHeight = currLine.fontSize * 16;
+        wrapText(gCtx, text, textX, textY, gCanvas.width - 10, lineHeight);
     }
     gCtx.restore();
+}
+
+function wrapText(context, text, x, y, maxWidth, lineHeight) {
+    let words = text.split(' ');
+    let line = '';
+
+    for (let i = 0; i < words.length; i++) {
+        let testLine = line + words[i] + ' ';
+        let metrics = context.measureText(testLine);
+        let testWidth = metrics.width;
+        if (testWidth > maxWidth && i > 0) {
+            context.fillText(line, x, y);
+            context.strokeText(line, x, y);
+            line = words[i] + ' ';
+            y += lineHeight;
+        }
+        else {
+            line = testLine;
+        }
+    }
+    context.fillText(line, x, y, gCanvas.width - 10);
+    context.strokeText(line, x, y, gCanvas.width - 10);
 }
 
 function moveLine(diff) {
@@ -60,7 +82,7 @@ function positionLine(diff) {
     return gMemes;
 }
 
-function downloadCanvas(elLink) {
+function onDownloadCanvas(elLink) {
     const data = gCanvas.toDataURL();
     elLink.href = data;
     elLink.download = 'my-img.jpg';

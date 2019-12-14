@@ -6,11 +6,25 @@ function init() {
 }
 
 function renderGallery() {
-    let imgs = loadPictures();
-    let strHtmls = imgs.map(function (img) {
-        return `<img class="thumbnails" src="${img.url}" onclick="onToggleMemeEditor(${img.id})"/>`
-    });
-    document.querySelector('.gallery').innerHTML = strHtmls.join('');
+    let searchText = document.getElementById('search').value;
+    let elGallery = document.querySelector('.gallery');
+    let imgs = filterPictures(searchText);
+    let strHtmls;
+    if (!searchText) {
+        strHtmls = imgs.map(function (img) {
+            return `<img class="thumbnails" src="${img.url}" onclick="onToggleMemeEditor(${img.id})"/>`
+        });
+        elGallery.innerHTML = strHtmls.join('');
+        return;
+    } else if (imgs.length === 0) {
+        strHtmls = `<h2>Sorry, no pictures matches your search term</h2>`;
+        elGallery.innerHTML = strHtmls;
+    } else {
+        strHtmls = imgs.map(function (img) {
+            return `<img class="thumbnails" src="${img.url}" onclick="onToggleMemeEditor(${img.id})"/>`
+        });
+        elGallery.innerHTML = strHtmls.join('');
+    };
 }
 
 function onToggleMemeEditor(imgId) {
@@ -32,40 +46,14 @@ function toggleRenderPages() {
     elGallery.classList.toggle('flex');
 }
 
-function renderMyMemes() {
-    let memes = loadSavedMemes();
-    let strHtmls = memes.map(function (meme) {
-        return `<img class="thumbnails" src="data:image/png;base64,${meme}"/>`
-    });
-    document.querySelector('.my-memes').innerHTML = strHtmls.join('');
-}
-
-function onToggleMyMemes() {
-    toggleRenderMyMemesPage();
-    renderMyMemes();
-}
-
-function toggleRenderMyMemesPage() {
-    let elMemeEditor = document.querySelector('.meme-editor-container');
-    let elGallery = document.querySelector('.gallery');
-    if (elMemeEditor.classList.contains("hidden")) {
-        elGallery.classList.toggle('hidden');
-        elGallery.classList.toggle('flex');
-    } else {
-        elMemeEditor.classList.toggle('hidden');
-        elMemeEditor.classList.toggle('flex');
-    }
-    let elMyMemes = document.querySelector('.my-memes');
-    elMyMemes.classList.toggle('hidden');
-    elMyMemes.classList.toggle('flex');
-}
-
-function onChangeText(element) {
-    let elLine = element.id;
-    let text = element.value;
-    checkWhichLine(elLine);
-    changeText(text);
+function onChangeText() {
+    let elText = document.getElementById('line-text').value;
+    changeText(elText);
     drawMeme();
+}
+
+function onAddLine() {
+    addLine();
 }
 
 function onChangeFillColor(fillColor) {
@@ -98,7 +86,24 @@ function onPositionLine(diff) {
     drawMeme();
 }
 
-function onSwitchLines() {
-    switchLine();
+function onSwitchLineUp() {
+    switchLineUp();
+    setValuesOfLine();
     drawMeme();
+}
+
+function onSwitchLineDown() {
+    switchLineDown();
+    setValuesOfLine();
+    drawMeme();
+}
+
+function setValuesOfLine() {
+    let idx = gMemes.selectedTxtIdx;
+    let elText = document.getElementById('line-text');
+    let elFill = document.querySelector('.fill-color');
+    let elBorder = document.querySelector('.border-color');
+    elText.value = gMemes.txts[idx].line;
+    elFill.value = gMemes.txts[idx].color;
+    elBorder.value = gMemes.txts[idx].borderColor;
 }

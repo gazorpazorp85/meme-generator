@@ -14,21 +14,26 @@
         <header class="title">
             <h1>Paolo's Meme Generator</h1>
             <nav>
-                <ul class="main-menu flex center clean-list">
+                <ul class="main-menu flex center align-center clean-list">
                     <li class="search-bar">
                         <div class="search">
-                            <input type="text" id="search" placeholder="search">
+                            <input type="text" id="search" placeholder="search" onkeyup="renderGallery()">
                         </div>
                     </li>
                     <li class="saved-memes">
-                        <div class="pointer" onclick="onToggleMyMemes()">My Memes</div>
+                        <div class="pointer" onclick="onToggleMyMemesGallery()">My Memes</div>
                     </li>
                 </ul>
             </nav>
         </header>
+
         <div class="gallery main-container flex wrap center">
         </div>
-        <div class="my-memes main-container wrap center hidden">
+        <div class="my-memes-gallery main-container wrap center hidden">
+        </div>
+        <div class="my-memes main-container center hidden">
+            <div class="my-memes-page grid">
+            </div>
         </div>
         <div class="meme-editor-container center hidden">
             <div class="meme-editor grid">
@@ -39,33 +44,28 @@
                     <div class="meme-editor-close pointer" onclick="onToggleGallery()">
                         <img src="img/Icons/x-mark-48.png">
                     </div>
-                    <div>
-                        <img src="img/Icons/arrow-138-48.png" title="change top line text">
-                        <img src="img/Icons/edit-6-48.png" title="change top line text">
-                        <input type="text" id="top-text" placeholder="Enter text here" onclick="onChangeText(this)"
-                            onkeyup="onChangeText(this)">
+                    <div class="text flex center align-center">
+                        <img src="img/Icons/edit-6-48.png" title="text">
+                        <input type="text" id="line-text" placeholder="Enter text here" onkeyup="onChangeText(this)">
+                        <button id="add-line" onclick="onAddLine()">
+                            <img src="img/Icons/plus-48.png" title="add new line">
+                        </button>
                     </div>
-                    <div class="bottom-text">
-                        <img src="img/Icons/arrow-197-48.png" title="change bottom line text">
-                        <img src="img/Icons/edit-6-48.png" title="change bottom line text">
-                        <input type="text" id="bottom-text" placeholder="Enter text here" onclick="onChangeText(this)"
-                            onkeyup="onChangeText(this)">
-                    </div>
-                    <div class="pointer">
-                        <div class="switch-lines" onclick="onSwitchLines()" title="switch lines position">
+                    <div class="switch pointer flex space-between">
+                        <div class="switch-line-up" onclick="onSwitchLineUp()" title="select line upscale">
                             <img src="img/Icons/arrow-138-48.png">
+                        </div>
+                        <div class="switch-line-down" onclick="onSwitchLineDown()" title="select line downscale">
                             <img src="img/Icons/arrow-197-48.png">
                         </div>
                     </div>
-                    <div class=background-color-input>
-                        <img src="img/Icons/text-bg-color-48.png">
-                        <input type="color" value="#ffffff" onchange="onChangeFillColor(this.value)" title="fill color">
+                    <div class="background-color-input flex center align-center">
+                        <img src="img/Icons/text-bg-color-48.png" class="background-color-image" title="fill color">
+                        <input type="color" class="fill-color" value="#ffffff" onchange="onChangeFillColor(this.value)">
                     </div>
-                    <div class="border-color-input">
-                        <img src="img/Icons/paint-brush-48.png">
-                        <input type="color" value="#000000" onchange="onChangeBorderColor(this.value)"
-                            title="border color">
-
+                    <div class="border-color-input flex center align-center">
+                        <img src="img/Icons/paint-brush-48.png" class="border-color-image" title="border color">
+                        <input type="color" class="border-color" value="#000000" onchange="onChangeBorderColor(this.value)">
                     </div>
                     <div class="font-size">
                         <button value="+" onclick="onChangeFontSize(this.value)" title="increase font size">
@@ -88,10 +88,10 @@
                     </div>
                     <div class="move-line">
                         <button value="-" onclick="onMoveLine(this.value)" title="move line up">
-                            <img class="pointer" src="img/Icons/arrow-138-48.png">
+                            <img class="pointer" src="img/Icons/arrow-133-48.png">
                         </button>
                         <button value="+" onclick="onMoveLine(this.value)" title="move line down">
-                            <img class="pointer" src="img/Icons/arrow-197-48.png">
+                            <img class="pointer" src="img/Icons/arrow-195-48.png">
                         </button>
                     </div>
                     <div class="line-position">
@@ -104,7 +104,7 @@
                     </div>
                     <div class="data-panel flex">
                         <div class="download-button">
-                            <a href="#" onclick="downloadCanvas(this)">
+                            <a href="#" onclick="onDownloadCanvas(this)">
                                 <img src="img/Icons/download-48.png" title="download">
                             </a>
                         </div>
@@ -115,32 +115,38 @@
                 </div>
             </div>
         </div>
+
         <footer class="footer flex column align-center">
-                <small>©Gazorpazorp85 for Vandaley Industries</small>
-                <div class="social-links flex center">
-                    <div class="social-logo">
-                        <a href="https://www.facebook.com/karma.tova" class="facebook" title="facebook" target="blank">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                    </div>
-                    <div class="social-logo">
-                        <a href="https://www.linkedin.com/in/paolo-groppi-6ba84117b" class="linkedin" title="linkedin" target="blank">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                    </div>
-                    <div class="social-logo">
-                        <a href="http://www.paologroppi.com" class="me" target="blank">
-                            <img src="img/Icons/about-me-48.png" width=40 height=40 title="www.paologroppi.com">
-                        </a>
-                    </div>
+            <small>©Gazorpazorp85 for Vandaley Industries</small>
+            <div class="social-links flex center">
+                <div class="social-logo">
+                    <a href="https://www.facebook.com/karma.tova" class="facebook" title="facebook" target="blank">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
                 </div>
+                <div class="social-logo">
+                    <a href="https://www.linkedin.com/in/paolo-groppi-6ba84117b" class="linkedin" title="linkedin"
+                        target="blank">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+                <div class="social-logo">
+                    <a href="http://www.paologroppi.com" class="me" target="blank">
+                        <img src="img/Icons/about-me-48.png" width=40 height=40 title="www.paologroppi.com">
+                    </a>
+                </div>
+            </div>
         </footer>
+
     </div>
+
     <script src="https://kit.fontawesome.com/aa5b8f9a54.js" crossorigin="anonymous"></script>
     <script src="js/storageService.js"></script>
     <script src="js/memeService.js"></script>
     <script src="js/canvasController.js"></script>
+    <script src="js/savedMemesController.js"></script>
     <script src="js/memeController.js"></script>
+
 </body>
 
 </html>
