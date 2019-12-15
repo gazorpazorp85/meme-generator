@@ -50,8 +50,8 @@ function drawImg() {
 
 function drawText() {
     gCtx.save();
-    for (let i = 0; i < gMemes.txts.length; i++) {
-        let currLine = gMemes.txts[i];
+    gMemes.txts.forEach(function(txt){
+        let currLine = txt;
         let text = currLine.line;
         gCtx.strokeStyle = currLine.borderColor;
         gCtx.fillStyle = currLine.color;
@@ -61,7 +61,7 @@ function drawText() {
         gCtx.font = currLine.fontSize + 'rem Impact';
         let lineHeight = currLine.fontSize * 16;
         wrapText(text, textX, textY, gCanvas.width - 10, lineHeight);
-    }
+    });
     gCtx.restore();
 }
 
