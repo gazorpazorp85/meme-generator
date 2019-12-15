@@ -23,6 +23,9 @@
                     <li class="saved-memes">
                         <div class="pointer" onclick="onToggleMyMemesGallery()">My Memes</div>
                     </li>
+                    <li class="back-to-gallery hidden">
+                        <div class="pointer" onclick="onToggleBackToMainGallery()">Main Gallery</div>
+                    </li>
                 </ul>
             </nav>
         </header>
@@ -45,10 +48,12 @@
                         <img src="img/Icons/x-mark-48.png">
                     </div>
                     <div class="text flex center align-center">
-                        <img src="img/Icons/edit-6-48.png" title="text">
                         <input type="text" id="line-text" placeholder="Enter text here" onkeyup="onChangeText(this)">
-                        <button id="add-line" onclick="onAddLine()">
+                        <button class="pointer" id="add-line" onclick="onAddLine()">
                             <img src="img/Icons/plus-48.png" title="add new line">
+                        </button>
+                        <button class="pointer" id="add-line" onclick="onDeleteLine()">
+                            <img src="img/Icons/delete-48.png" title="delete line">
                         </button>
                     </div>
                     <div class="switch pointer flex space-between">
@@ -61,11 +66,11 @@
                     </div>
                     <div class="background-color-input flex center align-center">
                         <img src="img/Icons/text-bg-color-48.png" class="background-color-image" title="fill color">
-                        <input type="color" class="fill-color" value="#ffffff" onchange="onChangeFillColor(this.value)">
+                        <input type="color" class="fill-color pointer" value="#ffffff" onchange="onChangeFillColor(this.value)">
                     </div>
                     <div class="border-color-input flex center align-center">
                         <img src="img/Icons/paint-brush-48.png" class="border-color-image" title="border color">
-                        <input type="color" class="border-color" value="#000000" onchange="onChangeBorderColor(this.value)">
+                        <input type="color" class="border-color pointer" value="#000000" onchange="onChangeBorderColor(this.value)">
                     </div>
                     <div class="font-size">
                         <button value="+" onclick="onChangeFontSize(this.value)" title="increase font size">
@@ -103,11 +108,15 @@
                         </button>
                     </div>
                     <div class="data-panel flex">
-                        <div class="download-button">
-                            <a href="#" onclick="onDownloadCanvas(this)">
-                                <img src="img/Icons/download-48.png" title="download">
-                            </a>
+                        <div class="download-share">
+                            <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
+                                <input name="img" id="imgData" type="hidden" />
+                                <button class="btn pointer" type="submit">
+                                    <img src="img/Icons/sharethis-3-48.png" title="share/download">
+                                </button>
+                              </form>
                         </div>
+                        <div class="share-container center hidden"></div>
                         <div class="save pointer" onclick="onSaveMeme()">
                             <img src="img/Icons/save-48.png" title="save">
                         </div>
@@ -142,6 +151,7 @@
 
     <script src="https://kit.fontawesome.com/aa5b8f9a54.js" crossorigin="anonymous"></script>
     <script src="js/storageService.js"></script>
+    <script src="js/uploadService.js"></script>
     <script src="js/memeService.js"></script>
     <script src="js/canvasController.js"></script>
     <script src="js/savedMemesController.js"></script>

@@ -1,6 +1,7 @@
 'use strict'
 
 function init() {
+    window.addEventListener("resize", () => {resizeCanvas();});
     loadPictures();
     renderGallery();
 }
@@ -34,6 +35,9 @@ function onToggleMemeEditor(imgId) {
 
 function onToggleGallery() {
     toggleRenderPages();
+    let elShare = document.querySelector('.share-container');
+    elShare.classList.toggle('hidden');
+    elShare.classList.toggle('flex');
     renderGallery();
 }
 
@@ -44,6 +48,8 @@ function toggleRenderPages() {
     let elGallery = document.querySelector('.gallery');
     elGallery.classList.toggle('hidden');
     elGallery.classList.toggle('flex');
+    let elSearch = document.querySelector('.search');
+    elSearch.classList.toggle('hidden');
 }
 
 function onChangeText() {
@@ -54,6 +60,14 @@ function onChangeText() {
 
 function onAddLine() {
     addLine();
+    let elText = document.getElementById('line-text');
+    elText.value = '';
+}
+
+function onDeleteLine() {
+    deleteLine();
+    setValuesOfLine();
+    drawMeme();
 }
 
 function onChangeFillColor(fillColor) {

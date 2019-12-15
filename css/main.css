@@ -9,6 +9,11 @@
     box-sizing: border-box;
 }
 
+html, body {
+    height: 100%;
+    position: relative;
+}
+
 body {
     margin: 0;
     font-family: nanum, sans-serif;
@@ -40,7 +45,7 @@ h1, h2 {
 /* header */
 
 #search {
-   height:30px; 
+   height: 30px; 
 }
 
 .title {
@@ -64,7 +69,9 @@ input#search {
     background-image: url(../img/Icons/search-14-48.png);
     background-repeat: no-repeat;
     background-size: 1.125rem;
-    text-indent: 20px;
+    background-position: 3px 3px;
+    height: 1.75rem;
+    text-indent: 25px;
     width: 12.5rem;
 }
 
@@ -89,8 +96,9 @@ input#search {
 
 .meme-editor {
     grid-template-columns: 1.6fr 1.4fr;
-    grid-template-areas: "cnvs-cont meme-edit-cntrl";
-    margin-bottom: 6.5rem;
+    grid-template-areas:
+        "cnvs-cont meme-edit-cntrl";
+    margin-bottom: 6rem;
 }
 
 .meme-editor-controller {
@@ -153,7 +161,8 @@ input[type="color"] {
 }
 
 .download-button {
-    padding-left: 5px;
+    padding-right: 15px;
+    padding-left: 13px;
 }
 
 .save {
@@ -180,7 +189,7 @@ input[type="color"] {
     background-color: rgb(46, 40, 40);
     color: ivory;
     border-radius: 25px;
-    height: 500px;
+    /* height: 500px; */
 }
 
 .my-memes-nav {
@@ -211,10 +220,10 @@ input[type="color"] {
 
 .footer {
     position: absolute;
+    height: 85px;
     bottom: 0;
     width: 100%;
     text-align: center;
-    height: 5.4rem;
     background-color: rgb(46, 40, 40);
     color: ivory;
 }
@@ -325,30 +334,24 @@ button {
     .title {
         font-size: 0.9em;
         height: 130px;
-        text-shadow: rgb(228, 91, 91) 2px 2px;
+        
     }
 
-    .page-container {
-        min-height: 90%;
-        height: 100%;
+    .title h1 {
+        text-shadow: rgb(228, 91, 91) 2px 2px;
     }
-    
+   
     /* gallery */
 
     .gallery {
-        min-height: 600px;
+        margin-bottom: 8em;
     }
 
     .thumbnails {
         height: 100px;
         width: 100px;
     }
-    /* canvas */
-    #main-canvas {
-        width: 300px;
-        height: 300px;
-    }
-
+    
     /* my-memes page */
 
     .no-saved-memes {
@@ -370,34 +373,40 @@ button {
         padding-top: 0;
         padding-bottom: 1.5rem;
     }
-
+    
     .my-meme-controller {
-        margin-left: 10px;
         background-color: rgb(46, 40, 40);
         color: ivory;
         border-radius: 25px;
-        height: 200px;
-    }
-
-    /* my meme gallery */
-
-    .my-memes-gallery {
-        height: 522px;
+        /* height: 200px; */
+        margin-bottom: 2em;
     }
 
     /* meme-controller */
+
     .meme-editor-controller img {
         height: 25px;
         width: 25px;
     }
 
+    .meme-editor-controller {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        margin-top: 0.67rem;
+        margin-bottom: 7em;
+    }
+
     .meme-editor {
         grid-template-columns: 1fr;
-        grid-template-areas: "cnvs-cont" "meme-edit-cntrl" "meme-edit-cntrl"
+        grid-template-areas:
+            "cnvs-cont"
+            "meme-edit-cntrl";
+        margin-bottom: 1.5rem;
     }
 
     .meme-editor-close {
-        align-self: center;
+        padding: 10px;
     }
 
     /* footer */
@@ -406,4 +415,17 @@ button {
         margin-top: 10px;
         height: 7rem;
     }
+
+    .social-logo {
+        background-color: #516fad;
+    }
+    
+    .social-logo:nth-child(2) {
+        background-color: #0e76a8;
+    }
+    
+    .social-logo:nth-child(3) {
+        background-color: darkred;
+    }
+
 }

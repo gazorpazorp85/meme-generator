@@ -11,7 +11,7 @@ let gMemes = {
         borderColor: '#000000',
         fontSize: 3,
         x: 10,
-        y: 60
+        y: 50
     }]
 };
 let gLineCounter = 0;
@@ -82,7 +82,7 @@ function addLine() {
             borderColor: '#000000',
             fontSize: 3,
             x: 10,
-            y: 460
+            y: gCanvas.height - 20
         });
     } else {
         gMemes.txts.push({
@@ -92,10 +92,32 @@ function addLine() {
             borderColor: '#000000',
             fontSize: 3,
             x: 10,
-            y: 250
+            y: gCanvas.height / 2
         });
     }
     gMemes.selectedTxtIdx = gLineCounter;
+    return gMemes;
+}
+
+function deleteLine() {
+    let idx = gMemes.selectedTxtIdx;
+    if (idx !== 0) {
+        gMemes.txts.splice(idx, 1);
+        gMemes.selectedTxtIdx--;
+        gLineCounter--;
+    } else {
+        gMemes.selectedTxtIdx = 0;
+        gLineCounter = 0;
+        gMemes.txts[0] = {
+            line: ' ',
+            align: 'left',
+            color: '#FFFFFF',
+            borderColor: '#000000',
+            fontSize: 3,
+            x: 10,
+            y: 50
+        }
+    }
     return gMemes;
 }
 

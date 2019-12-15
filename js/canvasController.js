@@ -4,10 +4,27 @@ let gCanvas;
 let gCtx;
 let gCurrImg;
 
+
+
 function createCanvas(imgId) {
     gCanvas = document.querySelector('#main-canvas');
     gCtx = gCanvas.getContext('2d');
     gCurrImg = getImageById(imgId);
+    resizeCanvas();
+}
+
+function resizeCanvas() {
+    let size = window.innerWidth;
+    if (size >= 1100) {
+        gCanvas.width = 500;
+        gCanvas.height = 500;
+    } else if (size >= 740) {
+        gCanvas.width = 400;
+        gCanvas.height = 400;
+    } else {
+        gCanvas.width = 300;
+        gCanvas.height = 300;
+    }
     drawImg();
 }
 
@@ -43,22 +60,22 @@ function drawText() {
         let textY = currLine.y;
         gCtx.font = currLine.fontSize + 'rem Impact';
         let lineHeight = currLine.fontSize * 16;
-        wrapText(gCtx, text, textX, textY, gCanvas.width - 10, lineHeight);
+        wrapText(text, textX, textY, gCanvas.width - 10, lineHeight);
     }
     gCtx.restore();
 }
 
-function wrapText(context, text, x, y, maxWidth, lineHeight) {
+function wrapText(text, x, y, maxWidth, lineHeight) {
     let words = text.split(' ');
     let line = '';
 
     for (let i = 0; i < words.length; i++) {
         let testLine = line + words[i] + ' ';
-        let metrics = context.measureText(testLine);
+        let metrics = gCtx.measureText(testLine);
         let testWidth = metrics.width;
         if (testWidth > maxWidth && i > 0) {
-            context.fillText(line, x, y);
-            context.strokeText(line, x, y);
+            gCtx.fillText(line, x, y);
+            gCtx.strokeText(line, x, y);
             line = words[i] + ' ';
             y += lineHeight;
         }
@@ -66,8 +83,8 @@ function wrapText(context, text, x, y, maxWidth, lineHeight) {
             line = testLine;
         }
     }
-    context.fillText(line, x, y, gCanvas.width - 10);
-    context.strokeText(line, x, y, gCanvas.width - 10);
+    gCtx.fillText(line, x, y, gCanvas.width - 10);
+    gCtx.strokeText(line, x, y, gCanvas.width - 10);
 }
 
 function moveLine(diff) {
