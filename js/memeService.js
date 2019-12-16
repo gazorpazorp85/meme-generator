@@ -109,7 +109,7 @@ function deleteLine() {
         gMemes.selectedTxtIdx = 0;
         gLineCounter = 0;
         gMemes.txts[0] = {
-            line: ' ',
+            line: '',
             align: 'left',
             color: '#FFFFFF',
             borderColor: '#000000',
